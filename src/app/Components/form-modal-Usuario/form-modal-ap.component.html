@@ -1,0 +1,52 @@
+<div class="modal-header" #child1>
+        <h4 class="modal-title">Formulario Usuario</h4>
+        <button type="button" class="close" aria-label="Close"
+         (click)="activeModal.dismiss('Cross click')">X
+        </button>
+      </div>
+      <form [formGroup]="myForm">
+        <div class="modal-boy">
+          <div class="container">
+              <img [src]="Imgsrc" style="max-width: 260px; margin-left: 25%;" (click)="file.click()"/>
+                <div class="form-group">
+                        <label for="titulo">Foto</label>
+                        <input type="file" 
+                          class="form-control"
+                            (change)="cambiaPreview($event);handleFileSelect($event)" #file accept="image/*"/>
+                      </div>
+            <div class="form-group">
+              <label for="Nombre">Nombre</label>
+              <input type="text" 
+                class="form-control"
+                formControlName="Nombre" />
+            </div>
+            <div class="form-group">
+              <label for="m">Email</label>
+              <input type="text" 
+                class="form-control"
+                formControlName="email"  />
+            </div>
+            <div class="form-group">
+              <button (click)="modifPass=!modifPass">Cambiar Contraseña</button>
+            </div>
+            <div *ngIf="modifPass" class="form-group">
+              <label for="m">Contraseña antigua</label>
+              <input type="password" 
+                class="form-control"
+                formControlName="passwordOld"  />
+            </div>
+            <div *ngIf="modifPass" class="form-group">
+              <label for="m">Contraseña nueva</label>
+              <input type="password" 
+                class="form-control"
+                formControlName="passwordNew"  />
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success"
+            (click)="submitForm(myForm.value)">
+            Añadir
+          </button>
+        </div>
+      </form>
